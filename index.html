@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=q">
+    <title>Huawei</title>
+    <style>
+        #main {
+            width: 900px;
+            height:900px;
+            border: 1px solid #000;
+            display: flex;
+            justify-content: space-between;
+            align-content: space-between;
+            flex-direction: column;
+        }
+        #main .row {
+            height: 280px;
+            display: flex;
+            justify-content: space-between;
+
+        }
+        #main .row .common_width {
+            height: 280px;
+            width: 280px;
+            border: 1px solid blue;
+        }
+        #main .row .more_width {
+            height: 280px;
+            width: 585px;
+            border: 1px solid red;
+        }
+        #main .row:nth-child(3) {
+            height: 200px;
+        }
+        #main .row:nth-child(3) .common_width {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div class="row">
+            <div class="more_width"></div>
+            <div class="common_width"></div>
+        </div>
+        <div class="row">
+            <div class="common_width"></div>
+            <div class="more_width"></div>
+        </div>
+        <div class="row">
+            <div class="common_width"></div>
+            <div class="common_width"></div>
+            <div class="common_width"></div>
+        </div>
+    </div>
+</body>
+</html>
