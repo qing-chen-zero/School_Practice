@@ -14,6 +14,7 @@
             justify-content: space-between;
             align-content: space-between;
             flex-direction: column;
+            margin: 0 auto;
         }
         #main .row {
             height: 280px;
@@ -26,10 +27,31 @@
             width: 280px;
             border: 1px solid blue;
         }
+        #main .row:nth-child(1) .common_width {
+            background: url(https://s3.bmp.ovh/imgs/2022/06/07/d56146f973509156.jpg) no-repeat 0 0/100% 100%;
+        }
+        #main .row:nth-child(2) .common_width {
+            background: url(https://s3.bmp.ovh/imgs/2022/06/08/8f7011c8e7296e01.jpg) no-repeat 0 0/100% 100%;
+        }
+        #main .row:nth-child(3) .common_width:nth-child(1) {
+            background: url(https://s3.bmp.ovh/imgs/2022/06/08/0384e7d86dd18b0f.jpg) no-repeat 0 0/100% 100%;
+        }
+        #main .row:nth-child(3) .common_width:nth-child(2) {
+            background: url(https://s3.bmp.ovh/imgs/2022/06/08/2c6f692355ece2d4.jpg) no-repeat 0 0/100% 100%;
+        }
+        #main .row:nth-child(3) .common_width:nth-child(3) {
+            background: url(https://s3.bmp.ovh/imgs/2022/06/08/040463ce8a3b78e5.jpg) no-repeat 0 0/100% 100%;
+        }
         #main .row .more_width {
             height: 280px;
             width: 585px;
             border: 1px solid red;
+        }
+        #main .row:nth-child(1) .more_width {
+            background: url(https://s3.bmp.ovh/imgs/2022/06/07/729a1e25928cdcf7.jpg) no-repeat 0 0/100% 100%;
+        }
+        #main .row:nth-child(2) .more_width {
+            background: url(https://s3.bmp.ovh/imgs/2022/06/08/6cbb6c5eb5e2c8bc.jpg) no-repeat 0 0/100% 100%;
         }
         #main .row:nth-child(3) {
             height: 200px;
@@ -39,7 +61,7 @@
         }
     </style>
 </head>
-<body>
+<body>  
     <div id="main">
         <div class="row">
             <div class="more_width"></div>
