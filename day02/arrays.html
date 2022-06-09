@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组操作</title>
+</head>
+<body>
+    <div id="main">
+        
+    </div>
+    <script>
+        let arr = [2,0,5,60,88,0,123,85,0,69,78,45,0]
+        document.getElementById("main").innerHTML = "当前数组：" +  arr
+        // for(let i = 0; i<arr.length; i++) {
+        //     if (arr[i] == 0) {
+        //         for (let j = i; j < arr.length; j++) {
+        //             arr[j] = arr[j+1]
+        //         }
+        //         arr.length--
+        //     }
+        // }
+        document.getElementById("main").innerHTML += "</br>除去0后的数组：" + arr.filter(function(item){
+            return item != 0    
+        })
+    </script>
+</body>
+</html>

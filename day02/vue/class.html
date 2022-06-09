@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <style>
+        .active {
+            color: red;
+            font-size: 24px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="indexChange()">下一个</button>
+        <p v-bind:class="index === 0 ? 'active' : '' ">钟声响起归家的讯号</p>
+        <p v-bind:class="index === 1 ? 'active' : '' ">在他生命里</p>
+        <p v-bind:class="index === 2 ? 'active' : '' ">仿佛带点唏嘘</p>
+        <p v-bind:class="index === 3 ? 'active' : '' ">黑色肌肤给他的意义</p>
+        <p v-bind:class="index === 4 ? 'active' : '' ">是一生奉献 肤色斗争中</p>
+        <p v-bind:class="index === 5 ? 'active' : '' ">年月把拥有变做失去</p>
+        <p v-bind:class="index === 6 ? 'active' : '' ">疲倦的双眼带着期望</p>
+        <p v-bind:class="index === 7 ? 'active' : '' ">今天只有残留的躯壳</p>
+        <p v-bind:class="index === 8 ? 'active' : '' ">迎接光辉岁月</p>
+        <p v-bind:class="index === 9 ? 'active' : '' ">风雨中抱紧自由</p>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                index: 0
+            },
+            methods: {
+                indexChange: function() {
+                    this.index++;
+                    if (this.index === 10) {    
+                        this.index = 0;
+                    }
+                }
+            },
+            mounted: function() {
+                setInterval(function() {
+                    app.indexChange();
+                }, 500);
+            }
+        })
+    </script>
+</body>
+</html>

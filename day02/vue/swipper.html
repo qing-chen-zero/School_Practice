@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        ul.slides {
+            width: 400px;
+            height: 250px;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            list-style: none;
+            overflow: hidden;
+        }
+        li.slide{
+            width: inherit;
+            height: inherit;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            left: 0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: .5s transform ease-in-out;
+        }
+
+        li.slide img {
+            width: inherit;
+            height: inherit;
+        }
+        
+        .slide:nth-of-type(1){
+
+        }
+        .slide:nth-of-type(2){
+            left: 100%;
+        }
+        .slide:nth-of-type(3){
+            left: 200%;
+        }
+        .slide:nth-of-type(4){
+            left: 300%;
+        }
+        .slide:nth-of-type(5){
+            left: 400%;
+        }
+
+        input[type="radio"] {
+            position: relative;
+            z-index: 100;
+            display: none;
+        }
+
+        .controls-visible {
+            position: absolute;
+            width: 100%;
+            bottom: 12px;
+            text-align: center;
+        }
+
+        .controls-visible label {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 0 3px;
+            border: 2px solid #fff;
+        }
+        .slides input[type="radio"]:nth-of-type(1):checked ~ .controls-visible label:nth-of-type(1) {
+            background-color: #333;
+        }
+        .slides input[type="radio"]:nth-of-type(2):checked ~ .controls-visible label:nth-of-type(2) {
+            background-color: #333;
+        }
+        .slides input[type="radio"]:nth-of-type(3):checked ~ .controls-visible label:nth-of-type(3) {
+            background-color: #333;
+        }
+        .slides input[type="radio"]:nth-of-type(4):checked ~ .controls-visible label:nth-of-type(4) {
+            background-color: #333;
+        }
+        .slides input[type="radio"]:nth-of-type(5):checked ~ .controls-visible label:nth-of-type(5) {
+            background-color: #333;
+        }
+
+        .slides input[type="radio"]:nth-of-type(1):checked ~ .slide {
+            transform: translateX(0%);
+        }
+        .slides input[type="radio"]:nth-of-type(2):checked ~ .slide {
+            transform: translateX(-100%);
+        }
+        .slides input[type="radio"]:nth-of-type(3):checked ~ .slide {
+            transform: translateX(-200%);
+        }
+        .slides input[type="radio"]:nth-of-type(4):checked ~ .slide {
+            transform: translateX(-300%);
+        }
+        .slides input[type="radio"]:nth-of-type(5):checked ~ .slide {
+            transform: translateX(-400%);
+        }
+        
+    </style>
+</head>
+<body>
+            <ul class="slides">
+
+                <input type="radio" name="control" id="control-1" checked>
+                <input type="radio" name="control" id="control-2">
+                <input type="radio" name="control" id="control-3">
+                <input type="radio" name="control" id="control-4">
+                <input type="radio" name="control" id="control-5">
+                
+
+                <li class="slide">
+                    <img src="https://s3.bmp.ovh/imgs/2022/06/08/44c74cc9646a5e08.jpg" alt="">
+                </li>
+                <li class="slide">
+                    <img src="https://s3.bmp.ovh/imgs/2022/06/08/1d99121beecfdc7f_thumb.jpg" alt="">
+                </li>
+                <li class="slide">
+                    <img src="https://s3.bmp.ovh/imgs/2022/06/08/54ebc338b96b889f_thumb.jpg" alt="">
+                </li>
+                <li class="slide">
+                    <img src="https://s3.bmp.ovh/imgs/2022/06/08/2e1909dfc86daadb_thumb.jpeg" alt="">
+                </li>
+                <li class="slide">
+                    <img src="https://s3.bmp.ovh/imgs/2022/06/08/5e685b6f37e74385_thumb.jpg" alt="">
+                </li>
+
+                <div class="controls-visible">
+                    <label for="control-1"></label>
+                    <label for="control-2"></label>
+                    <label for="control-3"></label>
+                    <label for="control-4"></label>
+                    <label for="control-5"></label>
+                </div>
+            </ul>
+
+    <!-- <script>
+        var app = new Vue({
+            el: "#main",
+            data: {
+                index: 0,
+                addTransition: false,
+                nextOne:true
+            },
+            methods: {
+                next: function () {
+                    this.nextOne = true
+                    this.index++;
+                    this.addTransition = true
+                    if (this.index > 4) {
+                        this.index = 0;
+                    }
+                },
+                prev: function () {
+                    this.nextOne = false
+                    this.index--;
+                    if (this.index < 0) {
+                        this.index = 4;
+                    }
+                }
+            }
+        })
+    </script> -->
+</body>
+</html>
