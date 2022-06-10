@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <style>
+        .big {
+            width: 300px;
+            height: 300px;
+            background-color: blueviolet;
+        }
+        .small {
+            width: 200px;
+            height: 200px;
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="big" @click="clickHandle($event, 'big', false)">
+            <div class="small" @click="clickHandle($event, 'small', true)">
+                <button @click="clickHandle($event, 'btn', false)">以前的阻止冒泡</button>
+            </div>
+        </div>
+
+        <textarea @keyup.a="showKey" name="" id="" cols="30" rows="10"></textarea>
+    </div>
+
+
+    <script>
+        Vue.config.devtools = true;
+        var app = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+                clickHandle(evt, name, stopPropagation) {
+                    console.log(`${name}被触发了`);
+                    // evt.stopPropagation()
+                    if (stopPropagation) {
+                        evt.stopPropagation()
+                    }
+                },
+                showKey(evt) {
+                    console.log(evt.key);
+                }
+            }
+        
+        })
+    </script>
+</body>
+</html>
