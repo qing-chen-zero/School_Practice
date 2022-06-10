@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤器</title>
+</head>
+<body>
+    <div id='app'>
+        <h4>全局过滤器</h4>
+        <p>{{str}}</p>
+        <p>{{text}}</p>
+        <p>{{text | testFilter}}</p>
+        <hr>
+        <p>局部过滤器,支持过滤器串联</p>
+        <p>{{msg | gth("100",'!','!','!') | testFilter}}</p>
+    </div>
+    
+    
+    <script src='https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js'></script>
+    <script>
+        Vue.config.production = false;
+        Vue.filter("testFilter", (value) => {
+            if (!value) {
+                return ""
+            }
+            //第一种
+            value = value.toString()
+            value = value.split("")
+            value[0] = value[0].toUpperCase()
+            return value.join("")
+
+            // 第二种
+            return value.charAt(0).toUpperCase() + value.slice(1)
+        })
+        let app = new Vue({
+            el: '#app',
+            data: {
+                str: "hello",
+                text: "name",
+                msg: "get:"
+            },
+            methods: {
+            
+            },
+            computed: {
+            
+            },
+            filters: {
+                gth(str, str1, str2, str3) {
+                    return str + str1 + str2 + str3 + "!"
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

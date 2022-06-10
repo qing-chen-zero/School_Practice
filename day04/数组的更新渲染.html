@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <title>数组更新渲染</title>
+    <style>
+        .todo{
+            border: 1px solid red;
+            margin-top: 10px;
+        }
+        .todo-btn {
+            display: inline-block;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Vue的数组都做了特殊处理 push() pop() shift() unshift() splice() sort() reverse() 都被进行了封装 -->
+    <div id='app'>
+        <input type="text" placeholder="按下回车添加一条todo" v-on:keyup.enter="addTodo" v-model="inputValue" />
+        <br/>
+        <br/>
+        <div class="todo" v-for="(item, index) in arr" :key="index" @click="inline(index)" :style="styleObject[index]">
+            <button @click="deleteTodo(index)" class="todo-btn">删除</button>{{item}}
+        </div>
+
+    </div>
+
+
+    <script>
+        Vue.config.production = false;
+        let app = new Vue({
+            el: '#app',
+            data: {
+                arr: [],
+                inputValue: '',
+                onClick: [],
+                styleObject: []   
+            },
+            methods: {
+                addTodo() {
+                    if (this.inputValue.trim() !== '') {
+                        this.onClick.push(false)
+                        this.arr.push(this.inputValue)
+                        this.inputValue = ''
+                        this.styleObject.push({
+                            'text-decoration': 'none',
+                            'color': '#000'
+                        })
+                    }
+                },
+                deleteTodo(index) {
+                    this.arr.splice(index, 1)
+                },
+                inline(index) {
+                    this.onClick[index] = !this.onClick[index]
+                    if (this.onClick[index] === true) {
+                        this.styleObject[index].textDecoration = 'line-through'
+                        this.styleObject[index].color = '#ccc'
+                    } else {
+                        this.styleObject[index].textDecoration = 'none'
+                        this.styleObject[index].color = '#000'
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

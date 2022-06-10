@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios请求</title>
+</head>
+<body>
+    <button id="btnPost">Post请求</button>
+    <button id="btnGet">Get请求</button>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+    <script>
+        const res = axios({
+            method: "GET",
+            url: "http://www.liulongbin.top:3006/api/getbooks",
+            // get请求用params、post用data
+            params: {
+                id: 2
+            }
+        })
+        console.log(res);
+        res.then((result) => {
+            console.log(result);
+        }).catch((err) => {
+            console.log(err);
+        })
+    </script>
+</body>
+</html>

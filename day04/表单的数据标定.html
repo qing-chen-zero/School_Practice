@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单的数据绑定</title>
+</head>
+
+<body>
+    <div id='app'>
+        <!-- 给input绑定事件，修改表单的值 -->
+        <input type="text" v-model="message" @input="inputHandle">
+        <p>{{message}}</p>
+
+        <textarea name="" id="" cols="30" rows="10" :value="text" @input="evt => text = evt.target.value">
+
+        </textarea>
+        <p>{{text}}</p>
+        <input type="text" v-model="city">
+        <select name="" id="" v-model="city">
+            <option value="bj">北京</option>
+            <option value="sh">上海</option>
+            <option value="gz">广州</option>
+            <option value="sz">深圳</option>
+        </select>
+        <hr>
+        <p>
+            {{agree? '同意':'不同意'}}
+        </p>
+        <input type="checkbox" name="" id="" v-model="agree">
+        <!-- muliple 可以多选 -->
+        <select multiple v-model="knowledge">
+            <option>完成Html</option>
+            <option>完成CSS</option>
+            <option>完成Vue</option>
+            <option>完成JS</option>
+        </select>
+
+        <hr/>
+
+        <label>
+            美食
+            <input type="checkbox" value="水煮肉片" v-model="hobby">
+        </label>
+        <label>
+            游戏
+            <input type="checkbox" value="王者荣耀" v-model="hobby">
+        </label>
+        <label>
+            旅游
+            <input type="checkbox" value="北京故宫" v-model="hobby">
+        </label>
+        <label>
+            烧烤
+            <input type="checkbox" value="烤鸡翅" v-model="hobby">
+        </label>
+        <p>
+            爱好{{hobby}}
+        </p>
+
+        v-model 有3个属性 .lazy .number .trim 
+        .lazy 懒绑定
+        .number 数字类型
+        .trim 去除空格
+        <h1>修饰符</h1>
+        <input v-model.lazy="msg">
+        <input v-model.number="number">
+        <input v-model.trim="trim">
+    </div>
+
+
+    <script src='https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js'></script>
+    <script>
+        Vue.config.production = false;
+        let app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                text: 'hello',
+                city: 'sz',
+                agree: false,
+                knowledge:[],
+                hobby:[],
+                msg:"lazy",
+                number:123,
+                trim:"去掉空白"
+            },
+            methods: {
+                inputHandle(evt) {
+                    this.message = evt.target.value;
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

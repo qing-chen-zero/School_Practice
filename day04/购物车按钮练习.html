@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车按钮小练习</title>
+</head>
+
+<body>
+    <div id='app'>
+        <p>
+            <button @click="reduce">-</button>
+            {{money}}
+            <button @click="add">+</button>
+        </p>
+        <div>{{tipMsg}}</div>
+    </div>
+
+
+    <script src='https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js'></script>
+    <script>
+        Vue.config.production = false;
+        let app = new Vue({
+            el: '#app',
+            data: {
+                money: 0
+            },
+
+            methods: {
+                reduce() {
+                    if (this.money > 0) this.money--;
+                },
+                add() {
+                    this.money++;
+                }
+            },
+            computed: {
+                tipMsg() {
+                    return (20 - this.money) > 0 ? '还差' + (20 - this.money) + '元起送' : '立即购买'
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

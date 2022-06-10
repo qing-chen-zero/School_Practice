@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>监听器</title>
+</head>
+<body>
+    <div id='app'>
+        <div>游戏时间：{{hours}}</div>
+        <button @click="hours++">add hours</button>
+        <div id="msg"></div>
+    </div>
+    
+    
+    <script src='https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js'></script>
+    <script>
+        Vue.config.production = false;
+        let app = new Vue({
+            el: '#app',
+            data: {
+                hours: 0
+            },
+            methods: {
+            
+            },
+            computed: {
+            
+            },
+            watch: {
+                //监听器将需要监听的属性名作为我们的key 并绑定一个属性发送改变时触发的方法
+                hours: function (newValue, oldValue) {
+                    let str = ""
+                    if(newValue !== oldValue) {
+                        if (newValue < 4) {
+                            str = "健康游戏时间"
+                        } else if (newValue <= 6) {
+                            str = `您的游戏时间已达${newValue}小时之久，请注意休息`
+                        } else {
+                            str = "为了您的健康,我们将在9秒之后强制下线"
+                        }
+                    }
+
+                    document.getElementById("msg").innerText = str                   
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

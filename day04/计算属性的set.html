@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>计算属性的set</title>
+</head>
+
+<body>
+    <div id='app'>
+        <p>姓：<input type="text" v-model="firstName" @input="fullName"></p>
+        <p>名：<input type="text" v-model="lastName" @input="fullName"></p>
+        <p>全名：<input type="text" v-model="fullName"></p>
+        <p></p>
+    </div>
+
+
+    <script src='https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js'></script>
+    <script>
+        Vue.config.production = false;
+        let app = new Vue({
+            el: '#app',
+            data: {
+                firstName: '张',
+                lastName: '三'
+            },
+            methods: {
+
+            },
+            computed: {
+                fullName: {
+                    get() {
+                        return this.firstName + this.lastName
+                    },
+                    set(val) {
+                        let name = val
+                        this.firstName = name.substring(0, 1)
+                        this.lastName = name.substring(1)
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

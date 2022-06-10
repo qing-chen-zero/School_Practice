@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单的数据绑定</title>
+</head>
+
+<body>
+    <div id='app'>
+        <h2>age:{{age}}</h2>
+        <h2 style="text-decoration: line-through;">isAdult: {{isAd}}</h2>
+        <p>isAdult: {{age >= 18 ? '成年' : '未成年'}}</p>
+
+
+        <hr>
+        <p>{{message.split("").reverse().join("")}}</p>
+        <p>{{message}}</p>
+        <hr>
+        <p>{{reverseMsg}}</p>
+    </div>
+
+
+    <script src='https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js'></script>
+    <script>
+        Vue.config.production = false;
+        let app = new Vue({
+            el: '#app',
+            data: {
+                age:18,
+                message: "hello world",
+            },
+            methods: {
+                
+            },
+            computed: {
+                isAd: {
+                    get() {
+                        return this.age >= 18 ? '成年' : '未成年'
+                    }
+                },
+                isAd1() {
+                    return this.age >= 18 ? '可以上网' : '不能上网'
+                },
+                reverseMsg() {
+                    return this.message.split("").reverse().join("")
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

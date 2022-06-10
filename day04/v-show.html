@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-show</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <h1>V-Show 用法</h1>
+        <button @click="disappear" v-if="show===true">点击我隐藏</button>
+        <button @click="disappear" v-else="">点击我显示</button>
+        <h1 v-show="show">我是显示的内容</h1>
+
+
+        <h1>V-For 用法</h1>
+        <ul>
+            <li v-for="(item, index) in arr" :key="index" :class="'demo-' + item">{{item}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="(k, i) in list" :key="i" :class="'demo-' + k">
+                <span>{{k.id}}</span>
+                <p>{{k.name}}</p>
+                <img src="{{}}" alt="">
+            </li>
+        </ul>
+        <ul>
+            <li v-for="value in obj" :key="value">{{value}}</li>
+        </ul>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                show: true,
+                arr: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                list: [
+                    {
+                        id: 0,
+                        name: 'FENDI',
+                    },
+                    {
+                        id: 1,
+                        name: 'Li Ning'
+                    }
+                ],
+                obj: {
+                    name: "小王",
+                    age: 20,
+                    sex: '男'
+                }
+            },
+            methods: {
+                disappear: function () {
+                    this.show = !this.show
+                }
+            }
+        })
+    </script>
+</body>
+</html>
