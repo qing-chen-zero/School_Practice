@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Axios请求</title>
 </head>
+
 <body>
     <button id="btnPost">Post请求</button>
     <button id="btnGet">Get请求</button>
+    <div id="app">
 
+    </div>
 
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
     <script>
+
         const res = axios({
             method: "GET",
             url: "http://www.liulongbin.top:3006/api/getbooks",
@@ -23,10 +28,39 @@
         })
         console.log(res);
         res.then((result) => {
-            console.log(result);
+            document.getElementById("app").innerHTML = JSON.stringify(result.data.data[0])
+            console.log(result.data.data[0]);
         }).catch((err) => {
             console.log(err);
         })
+
+        document.querySelector("#btnPost").addEventListener('click', async function () {
+            const result = await axios({
+                method: "POST",
+                url: "http://www.liulongbin.top:3006/api/post",
+                data: {
+                    name: "zs",
+                    age: 20
+                },
+            })
+            console.log(result);
+        })
+
+        // 结构赋值
+
+        document.querySelector("#btnPost").addEventListener('click', async function () {
+            const { data } = await axios({
+                method: "POST",
+                url: "http://www.liulongbin.top:3006/api/post",
+                data: {
+                    name: "zs",
+                    age: 20
+                },
+            })
+            console.log(data);
+        })
+
     </script>
 </body>
+
 </html>
