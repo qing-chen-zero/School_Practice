@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全局组件</title>
+</head>
+<body>
+    
+    <div id="app">
+        <gec-title></gec-title>
+        <gec-demo></gec-demo>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js"></script>
+    <script>
+        Vue.config.productionTip = false;
+        Vue.component('gec-title', {
+            template: `
+                <div>
+                    <h1>{{title}}</h1>
+                </div>
+            `,
+            props: {
+                title: {
+                    type: String,
+                    default: '标题'
+                }
+            }
+        }),
+        Vue.component('gec-demo', {
+            template: `
+                <gec-title></gec-title>
+            `
+        })
+        let app = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+
+            },
+            computed: {
+
+            }
+        })
+    </script>
+</body>
+</html>

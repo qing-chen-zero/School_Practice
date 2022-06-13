@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反向数据传值</title>
+</head>
+<body>
+    <div id='app'>
+        付款页面
+        <h2>父组件当前总价{{totalPrice}}</h2>
+        <pay-btn :payprice="totalPrice" @clear-price="complete">点击清空总价</pay-btn>
+        <h1>{{count}}</h1>
+        <add-one @add-one="addone"></add-one>
+        <minus-one @minus-one="minusone"></minus-one>
+        <input type="number" v-model="addNum" placeholder="0">
+        <add-btn @add-num="addcurnum"></add-btn>
+    </div>
+    <script src='https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.js'></script>
+    <script>
+        Vue.config.productionTip = false;
+        let app = new Vue({
+            el: '#app',
+            data: {
+                totalPrice: 1500,
+                count: 0,
+                addNum: ''
+            },
+            methods: {
+                complete() {
+                    this.totalPrice = 0;
+                },
+                addcurnum() {
+                    this.count += Number(this.addNum);
+                    this.addNum = ''
+                },
+                addone() {
+                    this.count++;
+                },
+                minusone() {
+                    this.count--;
+                }
+            },
+            components: {
+                "pay-btn": {
+                    props: ['payprice'],
+                    template: `
+                        <div>
+                            支付组件 您确定要支付{{payprice}}吗？
+                            <button @click="pay">支付</button>
+                        </div>  
+                            `,
+                    methods: {
+                        pay() {
+                            this.$emit('clear-price')
+                        }
+                    }
+                },
+                "add-btn": {
+                    props: ['addnum'],
+                    template: `
+                            <button @click="add">add current num</button>
+                    `,
+                    methods: {
+                        add() {
+                            this.$emit('add-num')
+                        }
+                    }
+                },
+                "add-one": {
+                    props: ['addone'],
+                    template: `
+                            <button @click="add">Add</button>
+                        `,
+                    methods: {
+                        add() {
+                            this.$emit('add-one')
+                        }
+                    }
+                },
+                "minus-one": {
+                    props: ['addone'],
+                    template: `
+                            <button @click="minus">Minus</button>
+                        `,
+                    methods: {
+                        minus() {
+                            this.$emit('minus-one')
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
